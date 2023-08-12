@@ -35,13 +35,13 @@ public class P02_OrdsDocumentPath {
                 .when().get("/countries/{country_name}");
 
         //- Then status code is 200
-        assertEquals(200,response.statusCode());
+        assertEquals(200, response.statusCode());
 
         //- And Content - Type is Json
-        assertEquals("application/json",response.contentType());
+        assertEquals("application/json", response.contentType());
 
         //- And country_id is US
-
+        assertEquals("US",response.path("country_id"));
 
 
     }
