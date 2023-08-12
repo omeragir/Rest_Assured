@@ -6,6 +6,8 @@ import io.restassured.response.Response;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 import static io.restassured.RestAssured.*;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -58,5 +60,39 @@ public class P03_SpartanWithResponsePath extends SpartanTestBase {
          String address = response.path("address");
         System.out.println("address = " + address);
 
+    }
+    @DisplayName("GET All Spartan")
+    @Test
+    public void allSpartanPath(){
+
+         Response response = given().accept(ContentType.JSON)
+                .when().get("/api/spartans");
+
+        // response.prettyPrint();
+
+         //get me first spartan id
+        int firstId = response.path("[0].id");
+        System.out.println("firstId = " + firstId);
+
+        int idFirst = response.path("id[0]");
+        System.out.println("idFirst = " + idFirst);
+
+        //get me first name
+        System.out.println("response.path(\"[0].name\") = " + response.path("[0].name"));
+
+        //get me last spartan
+        //name[-1]--> refers last element of the name list
+        System.out.println("response.path(\"name[-1]\") = " + response.path("name[-1]"));
+
+        //get me second spartan name from the last
+        System.out.println("response.path(\"name[-2]\") = " + response.path("name[-2]"));
+        
+        //get me all spartan name
+        List<String> allName = response.path("name");
+
+        //how to print each
+        for (String eachName : allName) {
+            System.out.println(eachName);
+        }
     }
 }
