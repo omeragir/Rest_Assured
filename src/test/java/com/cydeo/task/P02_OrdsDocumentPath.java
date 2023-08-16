@@ -1,4 +1,4 @@
-package com.cydeo.day02.task;
+package com.cydeo.task;
 
 import com.cydeo.utilities.HrTestBase;
 import io.restassured.RestAssured;
