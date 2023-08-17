@@ -49,8 +49,42 @@ public class P03_ZipTask extends ZipTestBase {
         //place name is Fairfax state is Virginia
         assertEquals("Virginia",jsonPath.getString("places[0].state"));
     }
+@DisplayName("GET zip code negative")
+@Test
+    public void test2(){
+        //TASK 2
+    //Given Accept application/json
+    //And path zipcode is 50000
+    //When I send a GET request to /us endpoint
+     Response response = given().accept(ContentType.JSON)
+            .and()
+            .pathParam("post code", 5000)
+            .when().get("/us/{post code}");
+
+     response.prettyPrint();
 
 
+
+    //Then status code must be 404
+    assertEquals(404,response.statusCode());
+    //And content type must be application/json
+    assertEquals("application/json",response.contentType());
+}
+
+@Test
+    public void test3(){
+        //Given Accept application/json
+    //And path state is va
+    //And path city is fairfax
+    //When I send a GET request to /us endpoint
+    //Then status code must be 200
+    //And content type must be application/json
+    //And payload should contains following information
+    //country abbreviation is US
+    //country United States
+    //place name Fairfax
+    //each places must contains fairfax as a value each post code must start with 22
+}
 
 
 
