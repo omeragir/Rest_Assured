@@ -94,13 +94,24 @@ public class P03_ZipTask extends ZipTestBase {
 
         //And payload should contain following information
         //country abbreviation is US
-        response.path("'country abbreviation'","US");
+        response.path("'country abbreviation'", "US");
         //country United States
-       response.path("country","United States");
+        response.path("country", "United States");
         //place name Fairfax
-        response.path("'place name'","Fairfax");
-        //each places must contain fairfax as a value each post code must start with 22
+        response.path("'place name'", "Fairfax");
 
+        //  each places must contains fairfax as a value
+        List<String> placeNames = response.path("places.'place name'");
+        //   System.out.println("placeNames = " + placeNames);
+        for (String placeName : placeNames) {
+            assertTrue(placeName.contains("Fairfax"));
+        }
+
+        //each post code must start with 22
+        List<String> postCodes = response.path("places.'post code'");
+        for (String postCode : postCodes) {
+            assertTrue(postCode.startsWith("22"));
+        }
     }
 
 
