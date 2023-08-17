@@ -80,9 +80,14 @@ public class P03_ZipTask extends ZipTestBase {
         //And path city is fairfax
         //When I send a GET request to /us endpoint
 
-        Response response = given().accept(ContentType.JSON)
-                .and()
-                .when().get("/us/va/fairfax");
+        Response response =
+                given().accept(ContentType.JSON)
+                        .and()
+                        .pathParam("state", "va")
+                        .and()
+                        .pathParam("city", "fairfax")
+                        .when()
+                        .get("/us/{state}/{city}");
 
         //response.prettyPrint();
 
