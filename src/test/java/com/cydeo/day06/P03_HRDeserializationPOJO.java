@@ -2,12 +2,15 @@ package com.cydeo.day06;
 
 import com.cydeo.pojo.Employee;
 import com.cydeo.pojo.Region;
+import com.cydeo.pojo.Spartan;
 import com.cydeo.utilities.HrTestBase;
 import io.restassured.http.ContentType;
 import io.restassured.path.json.JsonPath;
+import io.restassured.response.Response;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -73,27 +76,29 @@ public class P03_HRDeserializationPOJO extends HrTestBase {
     @DisplayName("GET regions info")
     @Test
     public void tes3(){
-         JsonPath jsonPath = given()
-                    .accept(ContentType.JSON)
+
+        JsonPath jsonPath = given()
+                .accept(ContentType.JSON)
                 .when()
-                     .get("/regions")
+                .get("/regions")
                 .then()
-                     .statusCode(200)
-                     .contentType("application/json")
-                     .body("items.region_name", everyItem(notNullValue()))
-                     .body("items.region_name", containsInRelativeOrder("Europe", "Americas", "Asia", "Middle East and Africa"))
-                     .body("items.region_id", containsInRelativeOrder(1, 2, 3, 4))
-                     .extract().jsonPath();
+                .statusCode(200)
+                .contentType("application/json")
+                .body("items.region_name", everyItem(notNullValue()))
+                .body("items.region_name", containsInRelativeOrder("Europe", "Americas", "Asia", "Middle East and Africa"))
+                .body("items.region_id", containsInRelativeOrder(1, 2, 3, 4))
+                .extract().jsonPath();
 
         List<Map<String, Object>> allRegionsMap = jsonPath.getList("items");
         for (Map<String, Object> eachRegionsMap : allRegionsMap) {
             System.out.println("eachRegionsMap = " + eachRegionsMap);
         }
 
+        List<Region> allRegionInfo = jsonPath.getList("items", Region.class);
 
-
-
-
+        for (Region each : allRegionInfo) {
+            System.out.println("each = " + each);
+        }
     }
 
 }

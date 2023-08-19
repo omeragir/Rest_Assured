@@ -20,5 +20,4 @@ public class Region {
     private String regionName;
 
     private List<Link> links;
-
 }
