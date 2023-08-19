@@ -36,8 +36,12 @@
             <version>2.13.0</version>
         </dependency>
 
-
-
+        <!-- Lombok -Instead of keep writing getter,setter,constructor,toString we can use annotation -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.28</version>
+        </dependency>
     </dependencies>
 
 
