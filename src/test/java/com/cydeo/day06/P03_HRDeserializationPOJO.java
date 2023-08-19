@@ -3,13 +3,19 @@ package com.cydeo.day06;
 import com.cydeo.pojo.Employee;
 import com.cydeo.pojo.Region;
 import com.cydeo.utilities.HrTestBase;
+import io.restassured.http.ContentType;
 import io.restassured.path.json.JsonPath;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+import java.util.Map;
+
 import static org.hamcrest.MatcherAssert.*;
 import static org.hamcrest.Matchers.*;
 import static io.restassured.RestAssured.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class P03_HRDeserializationPOJO extends HrTestBase {
     @DisplayName("GET regions to deserialize to POJO - LOMBOK -JSON PROPERTY")
@@ -64,5 +70,30 @@ public class P03_HRDeserializationPOJO extends HrTestBase {
 
 
      */
+    @DisplayName("GET regions info")
+    @Test
+    public void tes3(){
+         JsonPath jsonPath = given()
+                    .accept(ContentType.JSON)
+                .when()
+                     .get("/regions")
+                .then()
+                     .statusCode(200)
+                     .contentType("application/json")
+                     .body("items.region_name", everyItem(notNullValue()))
+                     .body("items.region_name", containsInRelativeOrder("Europe", "Americas", "Asia", "Middle East and Africa"))
+                     .body("items.region_id", containsInRelativeOrder(1, 2, 3, 4))
+                     .extract().jsonPath();
+
+        List<Map<String, Object>> allRegionsMap = jsonPath.getList("items");
+        for (Map<String, Object> eachRegionsMap : allRegionsMap) {
+            System.out.println("eachRegionsMap = " + eachRegionsMap);
+        }
+
+
+
+
+
+    }
 
 }
