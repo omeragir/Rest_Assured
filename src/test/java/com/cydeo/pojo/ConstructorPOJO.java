@@ -6,7 +6,7 @@ import lombok.Data;
 
 @Data
 @JsonIgnoreProperties(ignoreUnknown =true)
-public class Constructor {
+public class ConstructorPOJO {
 
     @JsonProperty("total")
     private String total;
@@ -16,4 +16,8 @@ public class Constructor {
 
     @JsonProperty("constructorId")
     private String constructorId;
+
+    @JsonProperty("name")
+    private String name;
+
 }
