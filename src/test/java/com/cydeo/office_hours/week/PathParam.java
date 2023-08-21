@@ -143,4 +143,19 @@ public class PathParam extends FruitTestBase {
                 .extract().jsonPath();
 
     }
+    /**     HOMEWORK
+     *1- Given accept type is Json
+     *2- Path Parameters value is
+     *     - id —> 2
+     *3- Query Parameter start  value  is 1
+     *4- Query Parameter limit  value  is 100
+     *5- When user sends GET request to /vendors/{id}/products
+     *6- Verify followings
+     *     - Status code should be 200
+     *     - Content Type is application/json
+     *     - verify limit is 100
+     *     - verify start is 1
+     *     - print all product names
+     *
+     */
 }
