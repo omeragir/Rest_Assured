@@ -1,5 +1,7 @@
 package com.cydeo.task;
 
+import com.cydeo.pojo.Region;
+import com.cydeo.pojo.RegionPojo;
 import com.cydeo.utilities.HrTestBase;
 import io.restassured.http.ContentType;
 import io.restassured.path.json.JsonPath;
@@ -41,9 +43,40 @@ public class P06_PostPutDelete extends HrTestBase {
 
         int regionId = jsonPath.getInt("region_id");
         String regionName = jsonPath.getString("region_name");
-        assertEquals(155,regionId);
-        assertEquals("TestRegion",regionName);
+        assertEquals(155, regionId);
+        assertEquals("TestRegion", regionName);
 
     }
 
+    @Test
+    public void test2() {
+        Response response = given().log().ifValidationFails()
+                .accept(ContentType.JSON)
+                .contentType(ContentType.JSON)
+                .when()
+                .get("/regions/155")
+                .then()
+                .statusCode(200)
+                .extract().response();
+        JsonPath jsonPath = response.jsonPath();
+        int regionId = jsonPath.getInt("region_id");
+        String regionName = jsonPath.getString("region_name");
+        System.out.println("regionName = " + regionName);
+        System.out.println("regionId = " + regionId);
+        assertEquals(155, regionId);
+        assertEquals("TestRegion", regionName);
+
+    }
+
+    @DisplayName("With Pojo")
+    @Test
+    public void test3() {
+
+        Response response = given().accept(ContentType.JSON)
+                .contentType(ContentType.JSON)
+                .body(new RegionPojo(255, "Test"))
+                .post("/regions/").prettyPeek();
+
+
+    }
 }
