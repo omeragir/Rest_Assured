@@ -1,6 +1,6 @@
 package com.cydeo.office_hours.week;
 
-import com.cydeo.utilities.FruitTestBase;
+
 import io.restassured.http.ContentType;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
@@ -13,7 +13,7 @@ import static org.hamcrest.MatcherAssert.*;
 import static org.hamcrest.Matchers.*;
 import static io.restassured.RestAssured.*;
 
-public class PathParam extends FruitTestBase {
+public class PathParam extends com.cydeo.utility.FruitTestBase {
 
     /**
      *1- Given accept type is Json

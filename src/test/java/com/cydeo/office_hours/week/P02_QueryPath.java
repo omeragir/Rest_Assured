@@ -1,6 +1,6 @@
 package com.cydeo.office_hours.week;
 
-import com.cydeo.utilities.FruitTestBase;
+
 import io.restassured.http.ContentType;
 import io.restassured.path.json.JsonPath;
 import org.junit.jupiter.api.Test;
@@ -12,7 +12,7 @@ import static org.hamcrest.MatcherAssert.*;
 import static org.hamcrest.Matchers.*;
 import static io.restassured.RestAssured.*;
 
-public class P02_QueryPath extends FruitTestBase {
+public class P02_QueryPath extends com.cydeo.utility.FruitTestBase {
     /**
      * 1- Given accept type is Json
      * 2- Query Parameters value is

@@ -1,14 +1,15 @@
 package com.cydeo.day08;
 
-import com.cydeo.utilities.BookItTestBase;
+
 import com.cydeo.utilities.BookItUtils;
+import com.cydeo.utilities.BookitTestBase;
 import io.restassured.http.ContentType;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.given;
 
-public class P02_BookItTest extends BookItTestBase {
+public class P02_BookItTest extends BookitTestBase {
 
     String email = "lfinnisz@yolasite.com";
     String password = "lissiefinnis";
